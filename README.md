@@ -14,3 +14,6 @@ CC - 3
 –	Written CONTRIBUTING.md with branching + commit rules
 –	Enabled branch protection rule on main (require PR)
 
+CC - 4
+- documented, version-pinned local toolchain
+
