@@ -15,5 +15,5 @@ CC - 3
 –	Enabled branch protection rule on main (require PR)
 
 CC - 4
-- documented, version-pinned local toolchain
+Documented, version-pinned local toolchain
 
