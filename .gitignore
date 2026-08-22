@@ -1,0 +1,11 @@
+# Ignore local state files
+**/terraform.tfstate
+**/terraform.tfstate.*
+
+# Ignore the local .terraform working directory
+**/.terraform/
+
+# Ignore crash logs or variables containing secrets
+**/*.tfvars
+**/*.tfvars.json
+**/crash.log
