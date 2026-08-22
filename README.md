@@ -17,8 +17,12 @@ CC - 3
 CC - 4
 Documented, version-pinned local toolchain
 
-CC - 5
+CC - 6
 To move the terraform state file from local to backend created an S3 bucket to store state file remotely and achieved state locking through Dynamo DB.
 If two engineers try to run terraform apply at the same instant of time this will block the second user and warns him about the first user's wip.
 From this we can achieve state locking
+Technical steps:
+1. Provisioned an S3 bucket which versioning + encryption enabled and blocks public access
+2. Created a DynamoDB table with LockID as the key for state locking
+3. After this backend.tf file was created to tell terraform to move state file from local to remote
 
