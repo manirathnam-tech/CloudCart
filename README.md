@@ -26,3 +26,7 @@ Technical steps:
 2. Created a DynamoDB table with LockID as the key for state locking
 3. After this backend.tf file was created to tell terraform to move state file from local to remote
 
+
+CC - 7
+Added networking documentation for environments in docs/networking.md
+
