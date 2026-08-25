@@ -6,6 +6,5 @@
 .terraform/
 
 # Ignore crash logs or variables containing secrets
-*.tfvars
 *.tfvars.json
 crash.log
