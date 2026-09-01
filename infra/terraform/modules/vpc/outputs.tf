@@ -27,3 +27,8 @@ output "internet_gateway_id" {
   value       = aws_internet_gateway.CloudCart_igw.id
   description = "The ID of the Internet Gateway"
 }
+
+output "nat_gateway_ids" {
+  value       = aws_nat_gateway.CloudCart_nat[*].id
+  description = "The IDs of the NAT Gateways"
+}
