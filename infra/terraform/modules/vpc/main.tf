@@ -68,4 +68,68 @@ resource "aws_eip" "CloudCart_nat_eip" {
 resource "aws_nat_gateway" "CloudCart_nat_gw" {
   allocation_id = aws_eip.CloudCart_nat_eip.id
   subnet_id     = aws_subnet.CloudCart_subnet_public[0].id
+
+  depends_on = [aws_internet_gateway.CloudCart_igw]
+
+  tags = {
+    Name        = "${var.env}-nat-gw"
+    Environment = var.env
+  }
+}
+
+resource "aws_route_table" "CloudCart_public_rt" {
+  vpc_id = aws_vpc.CloudCart_vpc.id
+
+  tags = {
+    Name        = "${var.env}-public-rt"
+    Environment = var.env
+  }
+}
+
+resource "aws_route_table" "CloudCart_private_rt" {
+  vpc_id = aws_vpc.CloudCart_vpc.id
+
+  tags = {
+    Name        = "${var.env}-private-rt"
+    Environment = var.env
+  }
+}
+
+resource "aws_route_table" "CloudCart_data_rt" {
+  vpc_id = aws_vpc.CloudCart_vpc.id
+
+  tags = {
+    Name        = "${var.env}-data-rt"
+    Environment = var.env
+  }
+}
+
+resource "aws_route" "CloudCart_public_default" {
+  route_table_id         = aws_route_table.CloudCart_public_rt.id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id              = aws_internet_gateway.CloudCart_igw.id
+}
+
+resource "aws_route" "CloudCart_private_default" {
+  route_table_id         = aws_route_table.CloudCart_private_rt.id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id          = aws_nat_gateway.CloudCart_nat_gw.id
+}
+
+resource "aws_route_table_association" "CloudCart_public_rt_assoc" {
+  count          = length(var.public_subnet_cidrs)
+  subnet_id      = aws_subnet.CloudCart_subnet_public[count.index].id
+  route_table_id = aws_route_table.CloudCart_public_rt.id
+}
+
+resource "aws_route_table_association" "CloudCart_private_rt_assoc" {
+  count          = length(var.private_subnet_cidrs)
+  subnet_id      = aws_subnet.CloudCart_subnet_private[count.index].id
+  route_table_id = aws_route_table.CloudCart_private_rt.id
+}
+
+resource "aws_route_table_association" "CloudCart_data_rt_assoc" {
+  count          = length(var.data_subnet_cidrs)
+  subnet_id      = aws_subnet.CloudCart_subnet_data[count.index].id
+  route_table_id = aws_route_table.CloudCart_data_rt.id
 }
