@@ -56,7 +56,16 @@ resource "aws_subnet" "CloudCart_subnet_data" {
   }
 }
 
-resource "nat_gateway" "CloudCart_nat_gw" {
+resource "aws_eip" "CloudCart_nat_eip" {
+  domain = "vpc"
+
+  tags = {
+    Name        = "${var.env}-nat-eip"
+    Environment = var.env
+  }
+}
+
+resource "aws_nat_gateway" "CloudCart_nat_gw" {
   allocation_id = aws_eip.CloudCart_nat_eip.id
   subnet_id     = aws_subnet.CloudCart_subnet_public[0].id
 }
