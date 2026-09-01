@@ -29,21 +29,21 @@ output "data_subnet_ids" {
 }
 
 output "nat_gateway_ids" {
-  value       = [aws_nat_gateway.CloudCart_nat_gw.id]
+  value       = module.vpc.nat_gateway_ids
   description = "The IDs of the NAT Gateway(s)"
 }
 
 output "public_route_table_id" {
-  value       = aws_route_table.CloudCart_public_rt.id
+  value       = module.vpc.public_route_table_id
   description = "The ID of the public route table"
 }
 
 output "private_route_table_id" {
-  value       = aws_route_table.CloudCart_private_rt.id
+  value       = module.vpc.private_route_table_id
   description = "The ID of the private route table"
 }
 
 output "data_route_table_id" {
-  value       = aws_route_table.CloudCart_data_rt.id
+  value       = module.vpc.data_route_table_id
   description = "The ID of the data route table"
 }
