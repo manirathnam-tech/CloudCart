@@ -45,5 +45,13 @@ Data	   | 10.57.8.0/24	10.57.9.0/24	10.57.10.0/24
 
 
 
+CC - 9
+Created a single NAT gateway across 3 AZs instead of one for each to reduce cloud costs.
+
+
+
+
+
+
 
 
