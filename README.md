@@ -30,3 +30,10 @@ Technical steps:
 CC - 7
 Added networking documentation for environments in docs/networking.md
 
+CC - 8
+Created terraform module for provisioning a Virtual Private Cloud (VPC), an Internet Gateway, Public/Private/Data subnets across 3 Availability zones
+
+CC - 9
+1. Cretaed Terraform module for provisioning NAT gateway and route tables and their particular associations
+2. Created routes to associate public subnet to IGW and private subnet to NAT gateway
+
