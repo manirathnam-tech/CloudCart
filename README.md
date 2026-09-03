@@ -37,3 +37,7 @@ CC - 9
 1. Cretaed Terraform module for provisioning NAT gateway and route tables and their particular associations
 2. Created routes to associate public subnet to IGW and private subnet to NAT gateway
 
+CC - 10
+1. Created a security-groups Terraform module defining tiered baseline security groups (ALB, app, data tier) with least-privilege rules
+2. App-tier and data-tier ingress reference source security groups (SG-to-SG) instead of hardcoded CIDR blocks
+
