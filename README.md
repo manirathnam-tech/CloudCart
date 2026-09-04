@@ -41,3 +41,8 @@ CC - 10
 1. Created a security-groups Terraform module defining tiered baseline security groups (ALB, app, data tier) with least-privilege rules
 2. App-tier and data-tier ingress reference source security groups (SG-to-SG) instead of hardcoded CIDR blocks
 
+CC - 11
+1. Validated the dev network with a throwaway EC2 instance (t3.micro) in a private subnet, managed only via AWS Systems Manager Session Manager (no SSH/bastion)
+2. Confirmed outbound internet access via the NAT gateway - curl from the instance returned the NAT gateway's own Elastic IP, not the instance's (which has none)
+3. Instance, IAM role/instance profile, and temporary security group destroyed after validation
+
