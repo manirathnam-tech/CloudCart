@@ -53,7 +53,7 @@ Created a single NAT gateway across 3 AZs instead of one for each to reduce clou
 
 CC - 12
 1. A clear network architecture diagram was stored at ![Network architecture diagram](diagrams/network-architecture.png)
-2. Here Private subnets only hosts EKS nodes and data subnet only stores data because private subnet: NAT egress for pulling             images/patches; data subnet: no internet route at all, accessed only from private subnet.
+2. Here Private subnets only hosts EKS nodes and data subnet only stores data because private subnet: NAT egress for pulling    images/patches; data subnet: no internet route at all, accessed only from private subnet.
 
 
 
