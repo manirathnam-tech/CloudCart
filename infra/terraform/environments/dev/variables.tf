@@ -28,3 +28,7 @@ variable "data_subnet_cidrs" {
   description = "The CIDR blocks for the data subnets"
   type        = list(string)
 }
+
+variable "eks_public_access_cidrs" {
+  type = list(string)
+}
