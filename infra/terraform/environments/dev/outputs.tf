@@ -47,3 +47,23 @@ output "data_route_table_id" {
   value       = module.vpc.data_route_table_id
   description = "The ID of the data route table"
 }
+
+output "eks_cluster_name" {
+  value       = module.eks.cluster_name
+  description = "The name of the dev EKS cluster - use with aws eks update-kubeconfig --name <this>"
+}
+
+output "eks_cluster_endpoint" {
+  value       = module.eks.cluster_endpoint
+  description = "The API server endpoint for the dev EKS cluster"
+}
+
+output "eks_cluster_security_group_id" {
+  value       = module.eks.cluster_security_group_id
+  description = "The dedicated SG on the EKS control plane"
+}
+
+output "eks_cluster_iam_role_arn" {
+  value       = module.eks.cluster_iam_role_arn
+  description = "The IAM role ARN the EKS control plane assumes"
+}
