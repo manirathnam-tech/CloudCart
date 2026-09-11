@@ -14,3 +14,12 @@ source = "../../modules/security-groups"
 vpc_id = module.vpc.vpc_id
 env = var.env 
 }
+
+module "eks" {
+  source = "../../modules/eks"
+
+  env                     = var.env
+  vpc_id                  = module.vpc.vpc_id
+  private_subnet_ids      = module.vpc.private_subnet_ids
+  eks_public_access_cidrs = var.eks_public_access_cidrs
+}
