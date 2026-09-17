@@ -33,7 +33,7 @@ data "aws_ssm_parameter" "eks_optimized_ami" {
 resource "aws_launch_template" "eks_system" {
   name_prefix            = "${var.env}-eks-system-"
   image_id               = data.aws_ssm_parameter.eks_optimized_ami.value
-  instance_type          = "t3.medium"
+  instance_type          = "t3.micro"
   update_default_version = true
  
 
@@ -98,7 +98,7 @@ resource "aws_eks_node_group" "general" {
   node_group_name = "${var.env}-workloads"
   node_role_arn   = aws_iam_role.eks_node_role.arn
   subnet_ids      = var.private_subnet_ids
-  instance_types  = ["t3.large"]
+  instance_types  = ["t3.micro"]
 
   ami_type      = "AL2023_x86_64_STANDARD"
   capacity_type = "ON_DEMAND"
