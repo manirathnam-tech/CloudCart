@@ -40,7 +40,7 @@ resource "aws_vpc_security_group_ingress_rule" "eks_sg_self_all" {
   referenced_security_group_id = aws_security_group.eks_sg.id
   ip_protocol                  = "-1"
   description                  = "Allow all traffic between control plane and nodes sharing this SG"
- 
+ }
 resource "aws_eks_cluster" "this" {
  
   name     = "${var.env}-eks-cluster"
