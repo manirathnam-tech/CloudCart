@@ -27,6 +27,19 @@ resource "aws_security_group" "eks_sg" {
     Environment = var.env
   }
 }
+
+resource "aws_vpc_security_group_egress_rule" "eks_sg_all_out" {
+  security_group_id = aws_security_group.eks_sg.id
+  cidr_ipv4          = "0.0.0.0/0"
+  ip_protocol        = "-1"
+  description        = "Allow all outbound - API calls, ECR image pulls, etc."
+}
+
+resource "aws_vpc_security_group_ingress_rule" "eks_sg_self_all" {
+  security_group_id            = aws_security_group.eks_sg.id
+  referenced_security_group_id = aws_security_group.eks_sg.id
+  ip_protocol                  = "-1"
+  description                  = "Allow all traffic between control plane and nodes sharing this SG"
  
 resource "aws_eks_cluster" "this" {
  
