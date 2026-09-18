@@ -35,28 +35,27 @@ resource "aws_launch_template" "eks_system" {
   image_id               = data.aws_ssm_parameter.eks_optimized_ami.value
   instance_type          = "t3.micro"
   update_default_version = true
- 
 
   user_data = base64encode(<<-EOT
-    MIME-Version: 1.0
-    Content-Type: multipart/mixed; boundary="BOUNDARY"
- 
-    --BOUNDARY
-    Content-Type: application/node.eks.aws
- 
-    apiVersion: node.eks.aws/v1alpha1
-    kind: NodeConfig
-    spec:
-      cluster:
-        name: ${aws_eks_cluster.this.name}
-        apiServerEndpoint: ${aws_eks_cluster.this.endpoint}
-        certificateAuthority: ${aws_eks_cluster.this.certificate_authority[0].data}
-        cidr: ${aws_eks_cluster.this.kubernetes_network_config[0].service_ipv4_cidr}
- 
-    --BOUNDARY--
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="BOUNDARY"
+
+--BOUNDARY
+Content-Type: application/node.eks.aws
+
+apiVersion: node.eks.aws/v1alpha1
+kind: NodeConfig
+spec:
+  cluster:
+    name: ${aws_eks_cluster.this.name}
+    apiServerEndpoint: ${aws_eks_cluster.this.endpoint}
+    certificateAuthority: ${aws_eks_cluster.this.certificate_authority[0].data}
+    cidr: ${aws_eks_cluster.this.kubernetes_network_config[0].service_ipv4_cidr}
+
+--BOUNDARY--
   EOT
   )
- 
+
   metadata_options {
     http_endpoint               = "enabled"
     http_tokens                 = "required"
