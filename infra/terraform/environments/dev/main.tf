@@ -23,3 +23,7 @@ module "eks" {
   private_subnet_ids      = module.vpc.private_subnet_ids
   eks_public_access_cidrs = var.eks_public_access_cidrs
 }
+
+module "ecr" {
+  source = "../../modules/ecr"
+}
